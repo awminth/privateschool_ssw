@@ -1,0 +1,72 @@
+[23-Jan-2023 22:32:12 Asia/Rangoon] PHP Notice:  Undefined index: chk_dt in /home/kyawmtun/public_html/privateschool/ear/studentattendance_action.php on line 303
+[24-Jan-2023 19:28:40 Asia/Rangoon] PHP Notice:  Undefined index: yearname in /home/kyawmtun/public_html/privateschool/ear/earstudent.php on line 12
+[24-Jan-2023 19:28:40 Asia/Rangoon] PHP Notice:  Undefined index: gradename in /home/kyawmtun/public_html/privateschool/ear/earstudent.php on line 12
+[28-Jan-2023 15:39:50 Asia/Rangoon] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, bool given in /home/kyawmtun/public_html/privateschool/ear/studentfee_action.php on line 264
+[29-Jan-2023 21:47:21 Asia/Rangoon] PHP Notice:  Undefined variable: mtotal in /home/kyawmtun/public_html/privateschool/ear/studentreport_action.php on line 69
+[29-Jan-2023 21:47:42 Asia/Rangoon] PHP Notice:  Undefined variable: total in /home/kyawmtun/public_html/privateschool/ear/studentreport_action.php on line 159
+[29-Jan-2023 21:47:42 Asia/Rangoon] PHP Notice:  Undefined variable: mtotal in /home/kyawmtun/public_html/privateschool/ear/studentreport_action.php on line 160
+[01-Feb-2023 18:00:57 Asia/Rangoon] PHP Notice:  Undefined index: yearname in /home/kyawmtun/public_html/privateschool/ear/earstudent.php on line 12
+[01-Feb-2023 18:00:57 Asia/Rangoon] PHP Notice:  Undefined index: gradename in /home/kyawmtun/public_html/privateschool/ear/earstudent.php on line 12
+[21-Feb-2023 21:21:22 Asia/Rangoon] PHP Notice:  Undefined index: yearname in /home/kyawmtun/public_html/privateschool/ear/earstudent.php on line 12
+[21-Feb-2023 21:21:22 Asia/Rangoon] PHP Notice:  Undefined index: gradename in /home/kyawmtun/public_html/privateschool/ear/earstudent.php on line 12
+[22-Feb-2023 11:14:22 Asia/Rangoon] PHP Notice:  Undefined variable: mtotal in /home/kyawmtun/public_html/privateschool/ear/studentreport_action.php on line 69
+[22-Feb-2023 11:15:11 Asia/Rangoon] PHP Notice:  Undefined variable: total in /home/kyawmtun/public_html/privateschool/ear/studentreport_action.php on line 159
+[22-Feb-2023 11:15:11 Asia/Rangoon] PHP Notice:  Undefined variable: mtotal in /home/kyawmtun/public_html/privateschool/ear/studentreport_action.php on line 160
+[24-Feb-2023 17:31:50 Asia/Rangoon] PHP Notice:  Undefined index: yearname in /home/kyawmtun/public_html/privateschool/ear/earstudent.php on line 12
+[24-Feb-2023 17:31:50 Asia/Rangoon] PHP Notice:  Undefined index: gradename in /home/kyawmtun/public_html/privateschool/ear/earstudent.php on line 12
+[25-Feb-2023 23:37:02 Asia/Rangoon] PHP Notice:  Undefined index: kha_studentserdt in /home/kyawmtun/public_html/privateschool/ear/studentatt_khalist.php on line 90
+[25-Feb-2023 23:37:02 Asia/Rangoon] PHP Fatal error:  Uncaught Error: Call to undefined function enDate3() in /home/kyawmtun/public_html/privateschool/ear/studentatt_khalist.php:108
+Stack trace:
+#0 {main}
+  thrown in /home/kyawmtun/public_html/privateschool/ear/studentatt_khalist.php on line 108
+[25-Feb-2023 23:37:17 Asia/Rangoon] PHP Notice:  Undefined index: kha_studentserdt in /home/kyawmtun/public_html/privateschool/ear/studentatt_khalist.php on line 90
+[25-Feb-2023 23:37:17 Asia/Rangoon] PHP Fatal error:  Uncaught Error: Call to undefined function enDate3() in /home/kyawmtun/public_html/privateschool/ear/studentatt_khalist.php:108
+Stack trace:
+#0 {main}
+  thrown in /home/kyawmtun/public_html/privateschool/ear/studentatt_khalist.php on line 108
+[25-Feb-2023 23:40:02 Asia/Rangoon] PHP Fatal error:  Uncaught Error: Call to undefined function enDate3() in /home/kyawmtun/public_html/privateschool/ear/studentatt_khalist.php:108
+Stack trace:
+#0 {main}
+  thrown in /home/kyawmtun/public_html/privateschool/ear/studentatt_khalist.php on line 108
+[25-Feb-2023 23:40:20 Asia/Rangoon] PHP Fatal error:  Uncaught Error: Call to undefined function enDate3() in /home/kyawmtun/public_html/privateschool/ear/studentatt_khalist.php:108
+Stack trace:
+#0 {main}
+  thrown in /home/kyawmtun/public_html/privateschool/ear/studentatt_khalist.php on line 108
+[25-Feb-2023 23:47:37 Asia/Rangoon] PHP Warning:  mysqli::__construct(): (HY000/1130): Host 'chir107.websitehostserver.net' is not allowed to connect to this MariaDB server in /home/kyawmtun/public_html/privateschool/config.php on line 22
+[25-Feb-2023 23:47:37 Asia/Rangoon] PHP Warning:  mysqli_set_charset(): Couldn't fetch mysqli in /home/kyawmtun/public_html/privateschool/config.php on line 24
+[27-Feb-2023 21:13:51 Asia/Rangoon] PHP Warning:  A non-numeric value encountered in /home/kyawmtun/public_html/privateschool/ear/studentfee_action.php on line 275
+[27-Feb-2023 21:13:51 Asia/Rangoon] PHP Warning:  A non-numeric value encountered in /home/kyawmtun/public_html/privateschool/ear/studentfee_action.php on line 276
+[27-Feb-2023 21:13:51 Asia/Rangoon] PHP Warning:  A non-numeric value encountered in /home/kyawmtun/public_html/privateschool/ear/studentfee_action.php on line 275
+[27-Feb-2023 21:13:51 Asia/Rangoon] PHP Warning:  A non-numeric value encountered in /home/kyawmtun/public_html/privateschool/ear/studentfee_action.php on line 276
+[01-Mar-2023 21:23:01 Asia/Rangoon] PHP Notice:  Undefined index: yearname in /home/kyawmtun/public_html/privateschool/ear/earstudent.php on line 12
+[01-Mar-2023 21:23:01 Asia/Rangoon] PHP Notice:  Undefined index: gradename in /home/kyawmtun/public_html/privateschool/ear/earstudent.php on line 12
+[01-Mar-2023 21:36:33 Asia/Rangoon] PHP Notice:  Undefined index: yearname in /home/kyawmtun/public_html/privateschool/ear/earstudent.php on line 12
+[01-Mar-2023 21:36:33 Asia/Rangoon] PHP Notice:  Undefined index: gradename in /home/kyawmtun/public_html/privateschool/ear/earstudent.php on line 12
+[01-Mar-2023 22:41:46 Asia/Rangoon] PHP Notice:  Undefined index: yearname in /home/kyawmtun/public_html/privateschool/ear/earstudent.php on line 12
+[01-Mar-2023 22:41:46 Asia/Rangoon] PHP Notice:  Undefined index: gradename in /home/kyawmtun/public_html/privateschool/ear/earstudent.php on line 12
+[02-Mar-2023 15:03:17 Asia/Rangoon] PHP Notice:  Undefined index: yearname in /home/kyawmtun/public_html/privateschool/ear/earstudent.php on line 12
+[02-Mar-2023 15:03:17 Asia/Rangoon] PHP Notice:  Undefined index: gradename in /home/kyawmtun/public_html/privateschool/ear/earstudent.php on line 12
+[02-Mar-2023 20:34:38 Asia/Rangoon] PHP Notice:  Undefined variable: mtotal in /home/kyawmtun/public_html/privateschool/ear/studentreport_action.php on line 69
+[02-Mar-2023 20:35:07 Asia/Rangoon] PHP Notice:  Undefined variable: total in /home/kyawmtun/public_html/privateschool/ear/studentreport_action.php on line 159
+[02-Mar-2023 20:35:07 Asia/Rangoon] PHP Notice:  Undefined variable: mtotal in /home/kyawmtun/public_html/privateschool/ear/studentreport_action.php on line 160
+[02-Mar-2023 20:35:18 Asia/Rangoon] PHP Notice:  Undefined variable: mtotal in /home/kyawmtun/public_html/privateschool/ear/studentreport_action.php on line 69
+[02-Mar-2023 22:55:48 Asia/Rangoon] PHP Notice:  Undefined index: yearname in /home/kyawmtun/public_html/privateschool/ear/earstudent.php on line 12
+[02-Mar-2023 22:55:48 Asia/Rangoon] PHP Notice:  Undefined index: gradename in /home/kyawmtun/public_html/privateschool/ear/earstudent.php on line 12
+[02-Mar-2023 23:21:17 Asia/Rangoon] PHP Parse error:  syntax error, unexpected '$lang' (T_VARIABLE) in /home/kyawmtun/public_html/privateschool/lang/my.php on line 54
+[02-Mar-2023 23:21:32 Asia/Rangoon] PHP Parse error:  syntax error, unexpected '$lang' (T_VARIABLE) in /home/kyawmtun/public_html/privateschool/lang/my.php on line 54
+[02-Mar-2023 23:25:27 Asia/Rangoon] PHP Notice:  Undefined index: yearname in /home/kyawmtun/public_html/privateschool/ear/earstudent.php on line 12
+[02-Mar-2023 23:25:27 Asia/Rangoon] PHP Notice:  Undefined index: gradename in /home/kyawmtun/public_html/privateschool/ear/earstudent.php on line 12
+[13-Mar-2023 21:41:34 Asia/Rangoon] PHP Notice:  Undefined index: yearname in /home/kyawmtun/public_html/privateschool/ear/earstudent.php on line 12
+[13-Mar-2023 21:41:34 Asia/Rangoon] PHP Notice:  Undefined index: gradename in /home/kyawmtun/public_html/privateschool/ear/earstudent.php on line 12
+[13-Mar-2023 22:31:32 Asia/Rangoon] PHP Notice:  Undefined index: yearname in /home/kyawmtun/public_html/privateschool/ear/earstudent.php on line 12
+[13-Mar-2023 22:31:32 Asia/Rangoon] PHP Notice:  Undefined index: gradename in /home/kyawmtun/public_html/privateschool/ear/earstudent.php on line 12
+[15-Mar-2023 11:21:08 Asia/Rangoon] PHP Notice:  Undefined index: yearname in /home/kyawmtun/public_html/privateschool/ear/earstudent.php on line 12
+[15-Mar-2023 11:21:08 Asia/Rangoon] PHP Notice:  Undefined index: gradename in /home/kyawmtun/public_html/privateschool/ear/earstudent.php on line 12
+[15-Mar-2023 13:41:44 Asia/Rangoon] PHP Warning:  A non-numeric value encountered in /home/kyawmtun/public_html/privateschool/ear/studentfee_action.php on line 332
+[15-Mar-2023 13:41:44 Asia/Rangoon] PHP Warning:  A non-numeric value encountered in /home/kyawmtun/public_html/privateschool/ear/studentfee_action.php on line 333
+[26-Jul-2023 20:16:52 Asia/Rangoon] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, bool given in /home/kfskyur/public_html/ear/studentreport_action.php on line 66
+[26-Jul-2023 20:16:53 Asia/Rangoon] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/kfskyur/public_html/ear/studentreport_action.php on line 118
+[26-Jul-2023 20:16:53 Asia/Rangoon] PHP Warning:  file_get_contents(https://khaingfamilyschool.com/lib/mypdfcss.css): failed to open stream: no suitable wrapper could be found in /home/kfskyur/public_html/ear/studentreport_action.php on line 118
+[26-Jul-2023 20:16:57 Asia/Rangoon] PHP Warning:  file_get_contents(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in /home/kfskyur/public_html/ear/studentreport_action.php on line 201
+[26-Jul-2023 20:16:57 Asia/Rangoon] PHP Warning:  file_get_contents(https://khaingfamilyschool.com/lib/mypdfcss.css): failed to open stream: no suitable wrapper could be found in /home/kfskyur/public_html/ear/studentreport_action.php on line 201
+[28-Jul-2023 14:12:17 Asia/Rangoon] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, bool given in /home/kfskyur/public_html/ear/earstudent_action.php on line 241
