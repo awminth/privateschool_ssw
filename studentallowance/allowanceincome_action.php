@@ -25,18 +25,14 @@ if($action == 'show'){
     $offset = ($page-1) * $limit_per_page;                                               
    
     $search = $_POST['search'];
-    if($search == ''){        
-        $sql="select a.*,s.Name as sname,s.FatherName as fname 
+    $a = "";
+    if($search != ''){     
+        $a = " and (s.Name like '%$search%' or a.Amount like '%$search%') ";
+    } 
+    $sql="select a.*,s.Name as sname,s.FatherName as fname 
         from tblallowanceincome a,tblstudentprofile s
-        where a.StudentID=s.AID
+        where a.StudentID=s.AID ".$a."
         order by a.AID desc limit {$offset},{$limit_per_page}";
-    }else{
-        $sql="select a.*,s.Name as sname,s.FatherName as fname 
-        from tblallowanceincome a,tblstudentprofile s
-        where a.StudentID=s.AID
-        (and s.Name like '%$search%' or a.Amount like '%$search%') 
-        order by a.AID desc limit {$offset},{$limit_per_page}";        
-    }
     $result=mysqli_query($con,$sql) or die("SQL a Query");
     $out="";
     if(mysqli_num_rows($result) > 0){
@@ -69,7 +65,10 @@ if($action == 'show'){
                     </a>
                         <div class='dropdown-menu'>
                         <a href='#' id='btnedit' class='dropdown-item'
-                        data-aid='{$row['AID']}' data-toggle='modal'
+                        data-aid='{$row['AID']}'
+                        data-stuid='{$row['StudentID']}'
+                        data-sname='{$row['sname']}'
+                        data-amount='{$row['Amount']}' data-toggle='modal'
                         data-target='#editmodal'><i class='fas fa-edit text-primary'
                         style='font-size:13px;'></i>
                     {$lang['staff_edit']}</a>
@@ -89,18 +88,10 @@ if($action == 'show'){
         $out.="</table>";
 
         $sql_total="";
-        if($search == ''){        
-            $sql_total="select a.*,s.Name as sname,s.FatherName as fname 
-            from tblallowanceincome a,tblstudentprofile s
-            where a.StudentID=s.AID 
-            order by a.AID desc";
-        }else{
-            $sql_total="select a.*,s.Name as sname,s.FatherName as fname 
-            from tblallowanceincome a,tblstudentprofile s
-            where a.StudentID=s.AID
-            (and s.Name like '%$search%' or a.Amount like '%$search%') 
-            order by a.AID desc";        
-        }
+        $sql_total="select a.*,s.Name as sname,s.FatherName as fname,s.AID as said
+        from tblallowanceincome a,tblstudentprofile s
+        where a.StudentID=s.AID ".$a."
+        order by a.AID desc";
         $record = mysqli_query($con,$sql_total) or die("fail query");
         $total_record = mysqli_num_rows($record);
         $total_links = ceil($total_record/$limit_per_page);
@@ -241,63 +232,20 @@ if($action == 'save'){
     }
 }
 
-
-if($action == 'editprepare'){
-    $aid = $_POST["aid"];
-    $sql = "select a.*,s.Name as sname,p.Name as pname 
-    from tblallowanceincome a,tblstudentprofile s, 
-    tblparent p where a.StudentID=s.AID and a.ParentID=p.AID 
-    and a.AID='{$aid}'";
-    $result = mysqli_query($con,$sql);
-    $out = "";
-    if(mysqli_num_rows($result) > 0){
-        while($row = mysqli_fetch_array($result)){
-            $out.="<div class='modal-body'>
-                <input type='hidden' id='aid' name='aid' value='{$row['AID']}'/> 
-                <input type='hidden' id='action' name='action' value='editsave' />    
-                    <div class='form-group'>
-                        <label for='usr'> Student Name :</label>
-                        <select class='form-control border-success select2' name='stuname1'>
-                            <option value='{$row['StudentID']}' selected>{$row['sname']}</option>
-                            ".load_student()."
-                        </select>
-                    </div> 
-                    <div class='form-group'>
-                        <label for='usr'> Parent Name :</label>
-                        <select class='form-control border-success select2' name='parname1'>
-                            <option value='{$row['ParentID']}' selected>{$row['pname']}</option>
-                            ".load_parent()."
-                        </select>
-                    </div>                           
-                    <div class='form-group'>
-                        <label for='usr'> Amount :</label>
-                        <input type='number' class='form-control border-success' id='amount1' name='amount1' value='{$row['Amount']}'>
-                    </div>                               
-                </div>
-                <div class='modal-footer'>
-                    <button type='submit' id='btnupdate' class='btn btn-{$color}'><i class='fas fa-edit'></i>  {$lang['staff_edit']}</button>
-                </div>";
-        }
-        echo $out;
-    }
-}
-
-
 if($action == 'update'){
     $aid = $_POST["aid"];
     $stuid = $_POST["stuid"];
-    $parid = $_POST["parid"];
     $amount = $_POST["amount"];
     $dt = date("Y-m-d");
-    
-    $sql = "update tblallowanceincome set StudentID={$stuid},ParentID={$parid},
-    Amount={$amount} where AID=$aid";
+    $fname = GetString("select FatherName from tblstudentprofile where AID={$stuid}");
+    $sql = "update tblallowanceincome set StudentID={$stuid},ParentName='{$fname}',
+    Amount={$amount},Date='{$dt}' where AID=$aid";
     if(mysqli_query($con,$sql)){
         save_log($_SESSION["username"]."သည် Student Allowance Income အား update လုပ်သွားသည်။");
         echo 1;
     }
     else{
-        echo 0;
+        echo $sql;
     }
 }
 

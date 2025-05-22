@@ -100,7 +100,7 @@ include(root.'master/header.php');
 <!-- /.content-wrapper -->
 
 <!-- new Modal -->
-<div class="modal fade animate__animated animate__bounce" id="btnnewmodal">
+<div class="modal fade" id="btnnewmodal">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
 
@@ -157,6 +157,28 @@ include(root.'master/header.php');
             </div>
             <form id="frm1" method="POST">
                 <!-- Modal body -->
+                <div class='modal-body' data-spy='scroll' data-offset='50'>
+                    <input type='hidden' id='eaid' name='eaid'>
+                    <div class="form-group">
+                        <label for="usr"> Student Name :</label>
+                        <select class="form-control boder-success select2" name="estuid">
+                            <option value="estuname" id="estunameid">Select Student</option>
+                            <?=load_student();?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="usr"> Amount :</label>
+                        <input type="number" class="form-control border-success" id="eamount" name="eamount">
+                    </div>
+                    <div class="form-group">
+                        <label for="usr"> Remark :</label>
+                        <input type="text" class="form-control border-success" id="ermk" name="ermk">
+                    </div>
+                </div>
+                <div class='modal-footer'>
+                    <button type='submit' id='btnupdate' class='btn btn-<?=$color?>'><i class="fas fa-edit"></i>
+                        <?=$lang['staff_edit']?></button>
+                </div>
 
             </form>
         </div>
@@ -211,7 +233,6 @@ $(document).ready(function() {
     });
 
     $(document).on("click", "#btnnew", function() {
-        $("#category").val('');
         $("#btnnewmodal").modal("show");
     });
 
@@ -244,11 +265,16 @@ $(document).ready(function() {
                         $("#btnnewmodal").modal("hide");
                         swal("Successful!", "Save Successful.",
                             "success");
-
+                        swal.close();
                         load_pag();
-                    } else {
-                        //swal("Error!", "Error Save.", "error");
-                        swal(data);
+                    } 
+                    else if(data == 2){
+                        $("#btnnewmodal").modal("hide");
+                        swal("Warning","Insufficient Balance","warning")
+
+                    }
+                    else {
+                        swal("Error!", "Error Save.", "error");
                     }
                 }
             });
@@ -259,31 +285,26 @@ $(document).ready(function() {
     $(document).on("click", "#btnedit", function(e) {
         e.preventDefault();
         var aid = $(this).data("aid");
-        $.ajax({
-            type: "post",
-            url: "<?php echo roothtml.'studentallowance/allowanceexpense_action.php' ?>",
-            data: {
-                action: 'editprepare',
-                aid: aid
-            },
-            beforeSend: function() {
-                $(".loader").show();
-            },
-            success: function(data) {
-                $(".loader").hide();
-                $("#frm1").html(data);
-            }
-        });
+        var stuid = $(this).data("stuid");
+        var sname = $(this).data("sname");
+        var amount = $(this).data("amount");
+        var rmk = $(this).data("rmk");
+        $('[name="eaid"]').val(aid);
+        $('[name="estuid"]').val(stuid);
+        $('[name="estuname"]').val(sname);
+        $('[name="eamount"]').val(amount);
+        $('[name="ermk"]').val(rmk);
+        $('#estunameid').val(stuid).trigger('change');
+        $("#editmodal").modal("show");
     });
 
 
     $(document).on("click", "#btnupdate", function(e) {
         e.preventDefault();
-        var aid = $("#aid").val();
-        var stuid = $("[name='stuname1']").val();
-        var rmk = $("[name='rmk1']").val();
-        var amount = $("[name='amount1']").val();
-        var dt = $("[name='date1']").val();
+        var aid = $("[name='eaid']").val();
+        var stuid = $("[name='estuid']").val();
+        var amount = $("[name='eamount']").val();
+        var rmk = $("[name='ermk']").val();
         $.ajax({
             type: "post",
             url: "<?php echo roothtml.'studentallowance/allowanceexpense_action.php' ?>",
@@ -291,9 +312,8 @@ $(document).ready(function() {
                 action: 'update',
                 aid: aid,
                 stuid: stuid,
-                rmk: rmk,
                 amount: amount,
-                dt: dt
+                rmk: rmk
             },
             beforeSend: function() {
                 $(".loader").show();
@@ -304,8 +324,10 @@ $(document).ready(function() {
                     $("#editmodal").modal("hide");
                     swal("Successful", "Edit data success.",
                         "success");
+                    swal.close();
                     load_pag();
-                } else {
+                } 
+                else {
                     swal("Error", "Edit data failed.", "error");
                 }
             }
@@ -342,6 +364,7 @@ $(document).ready(function() {
                             swal("Successful",
                                 "Delete data success.",
                                 "success");
+                            swal.close();
                             load_pag();
                         } else {
                             swal("Error",

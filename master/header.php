@@ -658,7 +658,7 @@ if(isset($_SESSION['userid'])){
                                 </p>
                             </a>
                         </li>
-                        <li <?=($A11==1)?'' : 'style="display:none"' ?> class="nav-item">
+                        <li <?=($A11==1)?'' : 'style="display:none"' ?> class="nav-item" style="display: none;">
                             <a href="<?php echo roothtml.'appuser/appuser.php' ?>"
                                 class="nav-link <?php echo (curlink == 'appuser.php')?'bgactive' : '' ?>">
                                 <i class="nav-icon fas fa-phone"></i>
@@ -705,7 +705,7 @@ if(isset($_SESSION['userid'])){
                                 </p>
                             </a>
                         </li>
-                        <li <?=($A14==1)?'' : 'style="display:none"' ?> class="nav-item">
+                        <li <?=($A14==1)?'' : 'style="display:none"' ?> class="nav-item" style="display: none;">
                             <a href="<?php echo roothtml.'chat/chat.php' ?>"
                                 class="nav-link <?php echo (curlink == 'chat.php' || 
                                 curlink == 'chat_view.php')?'bgactive' : '' ?>">

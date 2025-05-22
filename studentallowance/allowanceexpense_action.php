@@ -25,18 +25,14 @@ if($action == 'show'){
     $offset = ($page-1) * $limit_per_page;                                               
    
     $search = $_POST['search'];
-    if($search == ''){        
-        $sql="select a.*,s.Name as sname 
+    $a = "";
+    if($search != ''){     
+        $a = " and (s.Name like '%$search%' or a.Amount like '%$search%') ";
+    } 
+    $sql="select a.*,s.Name as sname 
         from tblallowanceexpense a,tblstudentprofile s  
-        where a.StudentID=s.AID  
+        where a.StudentID=s.AID ".$a."
         order by a.AID desc limit {$offset},{$limit_per_page}";
-    }else{
-        $sql="select a.*,s.Name as sname 
-        from tblallowanceexpense a,tblstudentprofile s  
-        where a.StudentID=s.AID  
-        (and s.Name like '%$search%' or a.Amount like '%$search%') 
-        order by a.AID desc limit {$offset},{$limit_per_page}";        
-    }
     
     $result=mysqli_query($con,$sql) or die("SQL a Query");
     $out="";
@@ -71,7 +67,11 @@ if($action == 'show'){
                     </a>
                         <div class='dropdown-menu'>
                         <a href='#' id='btnedit' class='dropdown-item'
-                        data-aid='{$row['AID']}' data-toggle='modal'
+                        data-aid='{$row['AID']}'
+                        data-stuid='{$row['StudentID']}'
+                        data-sname='{$row['sname']}'
+                        data-amount='{$row['Amount']}'
+                        data-rmk='{$row['Rmk']}' data-toggle='modal'
                         data-target='#editmodal'><i class='fas fa-edit text-primary'
                         style='font-size:13px;'></i>
                     {$lang['staff_edit']}</a>
@@ -91,18 +91,10 @@ if($action == 'show'){
         $out.="</table>";
 
         $sql_total="";
-        if($search == ''){        
-            $sql_total="select a.*,s.Name as sname 
+        $sql_total="select a.*,s.Name as sname 
             from tblallowanceexpense a,tblstudentprofile s  
-            where a.StudentID=s.AID  
+            where a.StudentID=s.AID ".$a." 
             order by a.AID desc";
-        }else{
-            $sql_total="select a.*,s.Name as sname  
-            from tblallowanceexpense a,tblstudentprofile s  
-            where a.StudentID=s.AID  
-            (and s.Name like '%$search%' or a.Amount like '%$search%') 
-            order by a.AID desc";        
-        }
         $record = mysqli_query($con,$sql_total) or die("fail query");
         $total_record = mysqli_num_rows($record);
         $total_links = ceil($total_record/$limit_per_page);
@@ -234,66 +226,32 @@ if($action == 'save'){
     $rmk = $_POST["rmk"];
     $amount = $_POST["amount"];
     $dt = $_POST["date"];
-    $sql = "insert into tblallowanceexpense (StudentID,Amount,Rmk,Date) 
-    values ('{$stuid}',{$amount},'{$rmk}','{$dt}')";
-    if(mysqli_query($con,$sql)){
-        save_log($_SESSION["username"]." သည် Student Allowance Expense အားအသစ်သွင်းသွားသည်။");
-        echo 1;
-    }else{
-        echo $sql;
-    }
-}
-
-
-if($action == 'editprepare'){
-    $aid = $_POST["aid"];
-    $sql = "select a.*,s.Name as sname  
-    from tblallowanceexpense a,tblstudentprofile s  
-    where a.StudentID=s.AId and a.AID='{$aid}'";
-    $result = mysqli_query($con,$sql);
-    $out = "";
-    if(mysqli_num_rows($result) > 0){
-        while($row = mysqli_fetch_array($result)){
-            $out.="<div class='modal-body'>
-                <input type='hidden' id='aid' name='aid' value='{$row['AID']}'/> 
-                <input type='hidden' id='action' name='action' value='editsave' />    
-                    <div class='form-group'>
-                        <label for='usr'> Student Name :</label>
-                        <select class='form-control border-success select2' name='stuname1'>
-                            <option value='{$row['StudentID']}' selected>{$row['sname']}</option>
-                            ".load_student()."
-                        </select>
-                    </div>                           
-                    <div class='form-group'>
-                        <label for='usr'> Amount :</label>
-                        <input type='number' class='form-control border-success' id='amount1' name='amount1' value='{$row['Amount']}'>
-                    </div> 
-                    <div class='form-group'>
-                        <label for='usr'> Remark :</label>
-                        <input type='text' class='form-control border-success' id='rmk1' name='rmk1' value='{$row['Rmk']}'>
-                    </div> 
-                    <div class='form-group'>
-                        <label for='usr'> Date :</label>
-                        <input type='date' class='form-control border-success' name='date1'
-                            value='{$row['Date']}'>
-                    </div>                             
-                </div>
-                <div class='modal-footer'>
-                    <button type='submit' id='btnupdate' class='btn btn-{$color}'><i class='fas fa-edit'></i>  {$lang['staff_edit']}</button>
-                </div>";
+    $totalAmount = 0;
+    $chk_amount = GetInt("select sum(Amount) from tblallowanceexpense where StudentID='{$stuid}'");
+    $totalAmount = $chk_amount + $amount;
+    $allowanceincomeAmount = GetInt("select sum(Amount) from tblallowanceincome where StudentID='{$stuid}'");
+    if($totalAmount <= $allowanceincomeAmount){
+        $sql = "insert into tblallowanceexpense (StudentID,Amount,Rmk,Date) 
+        values ('{$stuid}',{$amount},'{$rmk}','{$dt}')";
+        if(mysqli_query($con,$sql)){
+            save_log($_SESSION["username"]." သည် Student Allowance Expense အားအသစ်သွင်းသွားသည်။");
+            echo 1;
+        }else{
+            echo 0;
         }
-        echo $out;
     }
+    else{
+        echo 2;
+    }
+    
 }
-
 
 if($action == 'update'){
     $aid = $_POST["aid"];
     $stuid = $_POST["stuid"];
     $rmk = $_POST["rmk"];
     $amount = $_POST["amount"];
-    $dt = $_POST["dt"];
-    
+    $dt = date("Y-m-d");
     $sql = "update tblallowanceexpense set StudentID={$stuid},Rmk='{$rmk}',
     Amount={$amount},Date='{$dt}' where AID=$aid";
     if(mysqli_query($con,$sql)){
