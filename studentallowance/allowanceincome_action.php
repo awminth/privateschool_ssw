@@ -26,18 +26,17 @@ if($action == 'show'){
    
     $search = $_POST['search'];
     if($search == ''){        
-        $sql="select a.*,s.Name as sname,p.Name as pname 
-        from tblallowanceincome a,tblstudentprofile s, 
-        tblparent p where a.StudentID=s.AID and a.ParentID=p.AID 
+        $sql="select a.*,s.Name as sname,s.FatherName as fname 
+        from tblallowanceincome a,tblstudentprofile s
+        where a.StudentID=s.AID
         order by a.AID desc limit {$offset},{$limit_per_page}";
     }else{
-        $sql="select a.*,s.Name as sname,p.Name as pname 
-        from tblallowanceincome a,tblstudentprofile s, 
-        tblparent p where a.StudentID=s.AID and a.ParentID=p.AID 
-        (and s.Name like '%$search%' or p.Name like '%$search%' or a.Amount like '%$search%') 
+        $sql="select a.*,s.Name as sname,s.FatherName as fname 
+        from tblallowanceincome a,tblstudentprofile s
+        where a.StudentID=s.AID
+        (and s.Name like '%$search%' or a.Amount like '%$search%') 
         order by a.AID desc limit {$offset},{$limit_per_page}";        
     }
-    
     $result=mysqli_query($con,$sql) or die("SQL a Query");
     $out="";
     if(mysqli_num_rows($result) > 0){
@@ -57,10 +56,11 @@ if($action == 'show'){
         $no = (($page - 1) * $limit_per_page);
         while($row = mysqli_fetch_array($result)){
             $no=$no+1;
+            $fname = ($row["fname"] == "") ? "Please insert Father Name in StudentProfile" : $row["fname"];
             $out.="<tr>
                 <td>{$no}</td>
                 <td>{$row["sname"]}</td>  
-                <td>{$row["pname"]}</td>
+                <td>{$fname}</td>
                 <td>{$row["Amount"]}</td>
                 <td class='text-center'>
                     <div class='dropdown dropleft'>
@@ -90,15 +90,15 @@ if($action == 'show'){
 
         $sql_total="";
         if($search == ''){        
-            $sql_total="select a.*,s.Name as sname,p.Name as pname 
-            from tblallowanceincome a,tblstudentprofile s, 
-            tblparent p where a.StudentID=s.AID and a.ParentID=p.AID 
+            $sql_total="select a.*,s.Name as sname,s.FatherName as fname 
+            from tblallowanceincome a,tblstudentprofile s
+            where a.StudentID=s.AID 
             order by a.AID desc";
         }else{
-            $sql_total="select a.*,s.Name as sname,p.Name as pname 
-            from tblallowanceincome a,tblstudentprofile s, 
-            tblparent p where a.StudentID=s.AID and a.ParentID=p.AID 
-            (and s.Name like '%$search%' or p.Name like '%$search%' or a.Amount like '%$search%') 
+            $sql_total="select a.*,s.Name as sname,s.FatherName as fname 
+            from tblallowanceincome a,tblstudentprofile s
+            where a.StudentID=s.AID
+            (and s.Name like '%$search%' or a.Amount like '%$search%') 
             order by a.AID desc";        
         }
         $record = mysqli_query($con,$sql_total) or die("fail query");
@@ -228,11 +228,10 @@ if($action == 'show'){
 
 if($action == 'save'){
     $stuid = $_POST["stuid"];
-    $parid = $_POST["parid"];
+    $dt = $_POST["dt"];
     $amount = $_POST["amount"];
-    $dt = date("Y-m-d");
-    $sql = "insert into tblallowanceincome (StudentID,ParentID,Amount,Date) 
-    values ('{$stuid}',{$parid},{$amount},'{$dt}')";
+    $sql = "insert into tblallowanceincome (StudentID,Amount,Date) 
+    values ('{$stuid}',{$amount},'{$dt}')";
     //echo $sql;
     if(mysqli_query($con,$sql)){
         save_log($_SESSION["username"]." သည် Student Allowance Income အားအသစ်သွင်းသွားသည်။");

@@ -100,7 +100,7 @@ include(root.'master/header.php');
 <!-- /.content-wrapper -->
 
 <!-- new Modal -->
-<div class="modal fade animate__animated animate__bounce" id="btnnewmodal">
+<div class="modal fade" id="btnnewmodal">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
 
@@ -121,15 +121,12 @@ include(root.'master/header.php');
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="usr"> Parent Name :</label>
-                        <select class="form-control boder-success select2" name="parname">
-                            <option value="">Selected Parent</option>
-                            <?=load_parent();?>
-                        </select>
-                    </div>
-                    <div class="form-group">
                         <label for="usr"> Amount :</label>
                         <input type="number" class="form-control border-success" id="amount" name="amount">
+                    </div>
+                    <div class="form-group">
+                        <label for="usr"> Date :</label>
+                        <input type="date" class="form-control border-success" id="dt" name="dt" value="<?php echo date('Y-m-d'); ?>">
                     </div>
                 </div>
                 <div class='modal-footer'>
@@ -217,9 +214,9 @@ $(document).ready(function() {
     $(document).on("click", "#btnsave", function(e) {
         e.preventDefault();
         var stuid = $("[name='stuname']").val();
-        var parid = $("[name='parname']").val();
         var amount = $("[name='amount']").val();
-        if (stuid == "" || parid == "" || amount == "") {
+        var dt = $("[name='dt']").val();
+        if (stuid == "" || amount == "") {
             swal("Information", "Please fill data", "info");
         } else {
             $.ajax({
@@ -228,8 +225,8 @@ $(document).ready(function() {
                 data: {
                     action: 'save',
                     stuid: stuid,
-                    parid: parid,
-                    amount: amount
+                    amount: amount,
+                    dt: dt
                 },
                 beforeSend: function() {
                     $(".loader").show();
