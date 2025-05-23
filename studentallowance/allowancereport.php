@@ -24,9 +24,11 @@ include(root.'master/header.php');
                         <div class="card-header">
                             <table>
                                 <tr>
-                                    <td><button id="btnnew" type="button" class="btn btn-sm btn-<?=$color?>"><i
-                                                class="fas fa-plus"></i>&nbsp; <?=$lang['staff_new']?>
-                                        </button></td>
+                                    <td><a href="<?=roothtml.'studentallowance/reportyear.php'?>" type="button"
+                                            class="btn btn-sm btn-<?=$color?>"><i class="fas fa-arrow-left"></i>&nbsp;
+                                            <?=$lang['btnback']?>
+                                        </a>
+                                    </td>
                                     <td>
                                         <form method="POST" action="allowancereport_action.php">
                                             <input type="hidden" name="hid">
@@ -151,149 +153,6 @@ $(document).ready(function() {
         var serdata = $(this).val();
         $("[name='ser']").val(serdata);
         load_pag();
-    });
-
-    $(document).on("click", "#btnnew", function() {
-        $("#category").val('');
-        $("#btnnewmodal").modal("show");
-    });
-
-
-    $(document).on("click", "#btnsave", function(e) {
-        e.preventDefault();
-        var stuid = $("[name='stuname']").val();
-        var rmk = $("[name='rmk']").val();
-        var amount = $("[name='amount']").val();
-        var date = $("[name='date']").val();
-        if (stuid == "" || rmk == "" || amount == "") {
-            swal("Information", "Please fill data", "info");
-        } else {
-            $.ajax({
-                type: "post",
-                url: "<?php echo roothtml.'studentallowance/allowancereport_action.php' ?>",
-                data: {
-                    action: 'save',
-                    stuid: stuid,
-                    rmk: rmk,
-                    amount: amount,
-                    date: date
-                },
-                beforeSend: function() {
-                    $(".loader").show();
-                },
-                success: function(data) {
-                    $(".loader").hide();
-                    if (data == 1) {
-                        $("#btnnewmodal").modal("hide");
-                        swal("Successful!", "Save Successful.",
-                            "success");
-
-                        load_pag();
-                    } else {
-                        //swal("Error!", "Error Save.", "error");
-                        swal(data);
-                    }
-                }
-            });
-        }
-    });
-
-
-    $(document).on("click", "#btnedit", function(e) {
-        e.preventDefault();
-        var aid = $(this).data("aid");
-        $.ajax({
-            type: "post",
-            url: "<?php echo roothtml.'studentallowance/allowancereport_action.php' ?>",
-            data: {
-                action: 'editprepare',
-                aid: aid
-            },
-            beforeSend: function() {
-                $(".loader").show();
-            },
-            success: function(data) {
-                $(".loader").hide();
-                $("#frm1").html(data);
-            }
-        });
-    });
-
-
-    $(document).on("click", "#btnupdate", function(e) {
-        e.preventDefault();
-        var aid = $("#aid").val();
-        var stuid = $("[name='stuname1']").val();
-        var rmk = $("[name='rmk1']").val();
-        var amount = $("[name='amount1']").val();
-        var dt = $("[name='date1']").val();
-        $.ajax({
-            type: "post",
-            url: "<?php echo roothtml.'studentallowance/allowancereport_action.php' ?>",
-            data: {
-                action: 'update',
-                aid: aid,
-                stuid: stuid,
-                rmk: rmk,
-                amount: amount,
-                dt: dt
-            },
-            beforeSend: function() {
-                $(".loader").show();
-            },
-            success: function(data) {
-                $(".loader").hide();
-                if (data == 1) {
-                    $("#editmodal").modal("hide");
-                    swal("Successful", "Edit data success.",
-                        "success");
-                    load_pag();
-                } else {
-                    swal("Error", "Edit data failed.", "error");
-                }
-            }
-        });
-    });
-
-
-    $(document).on("click", "#btndelete", function(e) {
-        e.preventDefault();
-        var aid = $(this).data("aid");
-        swal({
-                title: "Delete?",
-                text: "Are you sure delete!",
-                type: "error",
-                showCancelButton: true,
-                confirmButtonClass: "btn-danger",
-                confirmButtonText: "Yes, delete it!",
-                closeOnConfirm: false
-            },
-            function() {
-                $.ajax({
-                    type: "post",
-                    url: "<?php echo roothtml.'studentallowance/allowancereport_action.php'; ?>",
-                    data: {
-                        action: 'delete',
-                        aid: aid
-                    },
-                    beforeSend: function() {
-                        $(".loader").show();
-                    },
-                    success: function(data) {
-                        $(".loader").hide();
-                        if (data == 1) {
-                            swal("Successful",
-                                "Delete data success.",
-                                "success");
-                            load_pag();
-                        } else {
-                            swal("Error",
-                                "Delete data failed.",
-                                "error");
-                        }
-                    }
-                });
-            });
     });
 
 });

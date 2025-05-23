@@ -324,7 +324,8 @@ if(isset($_SESSION['userid'])){
                             </a>
                         </li>
                         <li <?=($A5==1)?'' : 'style="display:none"' ?> class="nav-item <?php echo (curlink == 'allowanceincome.php' 
-                        || curlink=='allowanceexpense.php' || curlink=='allowancereport.php')?'menu-open' : '' ?>">
+                        || curlink=='allowanceexpense.php' || curlink=='allowancereport.php' || curlink == 'incomeyear.php' 
+                        || curlink == 'expenseyear.php' || curlink == 'reportyear.php')?'menu-open' : '' ?>">
 
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-comments-dollar"></i>
@@ -336,22 +337,25 @@ if(isset($_SESSION['userid'])){
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="<?php echo roothtml.'studentallowance/allowanceincome.php' ?>"
-                                        class="nav-link <?php echo (curlink == 'allowanceincome.php')?'bgactive' : '' ?>">
+                                    <a href="<?php echo roothtml.'studentallowance/incomeyear.php' ?>"
+                                        class="nav-link <?php echo (curlink == 'allowanceincome.php' || 
+                                        curlink == 'incomeyear.php')?'bgactive' : '' ?>">
                                         <i class="far fa-circle nav-icon" style="font-size:10px;"></i>
                                         <p>Allowance Income</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="<?php echo roothtml.'studentallowance/allowanceexpense.php' ?>"
-                                        class="nav-link <?php echo (curlink == 'allowanceexpense.php')?'bgactive' : '' ?>">
+                                    <a href="<?php echo roothtml.'studentallowance/expenseyear.php' ?>"
+                                        class="nav-link <?php echo (curlink == 'allowanceexpense.php' || 
+                                        curlink == 'expenseyear.php')?'bgactive' : '' ?>">
                                         <i class="far fa-circle nav-icon" style="font-size:10px;"></i>
                                         <p>Allowance Expense</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="<?php echo roothtml.'studentallowance/allowancereport.php' ?>"
-                                        class="nav-link <?php echo (curlink == 'allowancereport.php')?'bgactive' : '' ?>">
+                                    <a href="<?php echo roothtml.'studentallowance/reportyear.php' ?>"
+                                        class="nav-link <?php echo (curlink == 'allowancereport.php' || 
+                                        curlink == 'reportyear.php')?'bgactive' : '' ?>">
                                         <i class="far fa-circle nav-icon" style="font-size:10px;"></i>
                                         <p>Allowance Report</p>
                                     </a>

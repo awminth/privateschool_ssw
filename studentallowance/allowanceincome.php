@@ -24,6 +24,11 @@ include(root . 'master/header.php');
                         <div class="card-header">
                             <table>
                                 <tr>
+                                    <td><a href="<?=roothtml.'studentallowance/incomeyear.php'?>" type="button"
+                                            class="btn btn-sm btn-<?=$color?>"><i class="fas fa-arrow-left"></i>&nbsp;
+                                            <?=$lang['btnback']?>
+                                        </a>
+                                    </td>
                                     <td><button id="btnnew" type="button" class="btn btn-sm btn-<?= $color ?>"><i
                                                 class="fas fa-plus"></i>&nbsp; <?= $lang['staff_new'] ?>
                                         </button></td>

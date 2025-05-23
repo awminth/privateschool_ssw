@@ -3,6 +3,7 @@ include('../config.php');
 include(root.'lib/vendor/autoload.php');
 $action = $_POST["action"];
 $userid=$_SESSION['userid'];
+$incomeyearid=$_SESSION['incomeyearid'];
 
 if($action == 'show'){  
 
@@ -31,7 +32,7 @@ if($action == 'show'){
     } 
     $sql="select a.*,s.Name as sname 
         from tblallowanceexpense a,tblstudentprofile s  
-        where a.StudentID=s.AID ".$a."
+        where a.StudentID=s.AID and a.AllowanceYearID={$incomeyearid} ".$a."
         order by a.AID desc limit {$offset},{$limit_per_page}";
     
     $result=mysqli_query($con,$sql) or die("SQL a Query");
@@ -93,7 +94,7 @@ if($action == 'show'){
         $sql_total="";
         $sql_total="select a.*,s.Name as sname 
             from tblallowanceexpense a,tblstudentprofile s  
-            where a.StudentID=s.AID ".$a." 
+            where a.StudentID=s.AID and a.AllowanceYearID={$incomeyearid} ".$a." 
             order by a.AID desc";
         $record = mysqli_query($con,$sql_total) or die("fail query");
         $total_record = mysqli_num_rows($record);
@@ -231,8 +232,8 @@ if($action == 'save'){
     $totalAmount = $chk_amount + $amount;
     $allowanceincomeAmount = GetInt("select sum(Amount) from tblallowanceincome where StudentID='{$stuid}'");
     if($totalAmount <= $allowanceincomeAmount){
-        $sql = "insert into tblallowanceexpense (StudentID,Amount,Rmk,Date) 
-        values ('{$stuid}',{$amount},'{$rmk}','{$dt}')";
+        $sql = "insert into tblallowanceexpense (StudentID,Amount,Rmk,Date,AllowanceYearID) 
+        values ('{$stuid}',{$amount},'{$rmk}','{$dt}',{$incomeyearid})";
         if(mysqli_query($con,$sql)){
             save_log($_SESSION["username"]." သည် Student Allowance Expense အားအသစ်သွင်းသွားသည်။");
             echo 1;
@@ -263,7 +264,6 @@ if($action == 'update'){
     }
 }
 
-
 if($action == 'delete'){
 
     $aid = $_POST["aid"];
@@ -278,9 +278,7 @@ if($action == 'delete'){
     
 }
 
-
-if($_POST["action"] == 'excel')
-{
+if($_POST["action"] == 'excel'){
     $search = $_POST['ser'];
     if($search == ''){        
         $sql="select s.*,g.Name as gname from tblsubject s,tblgrade g where 
@@ -330,9 +328,7 @@ if($_POST["action"] == 'excel')
     
 }
 
-
-if($_POST["action"] == 'pdf')
-{
+if($_POST["action"] == 'pdf'){
     $search = $_POST['ser'];
     if($search == ''){        
         $sql="select s.*,g.Name as gname from tblsubject s,tblgrade g where 
