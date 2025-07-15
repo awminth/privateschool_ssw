@@ -11,7 +11,7 @@ include(root.'master/header.php') ;
             <br>
             <table>
                 <tr>
-                    <td><a href="<?=roothtml.'ear/studentfee.php'?>" type="button" class="btn btn-sm btn-<?=$color?>"><i
+                    <td><a href="<?=roothtml.'uniform/studentfee.php'?>" type="button" class="btn btn-sm btn-<?=$color?>"><i
                                 class="fas fa-arrow-left"></i>&nbsp;
                             <?=$lang['btnback']?>
                         </a></td>
@@ -120,7 +120,7 @@ $(document).ready(function() {
         var search = $("[name='ser']").val();
         $.ajax({
             type: "post",
-            url: "<?php echo roothtml.'ear/studentfeeview_action.php' ?>",
+            url: "<?php echo roothtml.'uniform/studentfeeview_action.php' ?>",
             data: {
                 action: 'show',
                 page_no: page,
@@ -163,7 +163,7 @@ $(document).ready(function() {
         } else {
             $.ajax({
                 type: "post",
-                url: "<?php echo roothtml.'ear/studentfeeview_action.php' ?>",
+                url: "<?php echo roothtml.'uniform/studentfeeview_action.php' ?>",
                 data: {
                     action: 'save',
                     category: category
@@ -191,7 +191,7 @@ $(document).ready(function() {
         var feevno = $(this).data("feevno");
         $.ajax({
             type: "post",
-            url: "<?php echo roothtml.'ear/studentfeeview_action.php' ?>",
+            url: "<?php echo roothtml.'uniform/studentfeeview_action.php' ?>",
             data: {
                 action: 'editprepare',
                 aid: aid,
@@ -230,7 +230,7 @@ $(document).ready(function() {
             function() {
                 $.ajax({
                     type: "post",
-                    url: "<?php echo roothtml.'ear/studentfeeview_action.php'; ?>",
+                    url: "<?php echo roothtml.'uniform/studentfeeview_action.php'; ?>",
                     data: {
                         action: 'delete',
                         aid: aid,
@@ -264,7 +264,7 @@ $(document).ready(function() {
         var receivename = $(this).data('receivename');
         $.ajax({
             type: "post",
-            url: "<?php echo roothtml.'ear/studentfeeview_action.php' ?>",
+            url: "<?php echo roothtml.'uniform/studentfeeview_action.php' ?>",
             data: {
                 action: 'view',
                 feevno: feevno,

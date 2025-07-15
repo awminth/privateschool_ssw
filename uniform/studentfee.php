@@ -25,7 +25,7 @@ $gradeid=$_SESSION['gradeid'];
                         <div class="card-header">
                             <table>
                                 <tr>
-                                    <td><a href="<?=roothtml.'ear/earstudent.php'?>" type="button"
+                                    <td><a href="<?=roothtml.'uniform/studentgrade.php'?>" type="button"
                                             class="btn btn-sm btn-<?=$color?>"><i class="fas fa-arrow-left"></i>&nbsp;
                                             <?=$lang['btnback']?>
                                         </a></td>
@@ -96,7 +96,7 @@ $(document).ready(function() {
         var search = $("[name='ser']").val();
         $.ajax({
             type: "post",
-            url: "<?php echo roothtml.'ear/studentfee_action.php' ?>",
+            url: "<?php echo roothtml.'uniform/studentfee_action.php' ?>",
             data: {
                 action: 'show',
                 page_no: page,
@@ -135,7 +135,7 @@ $(document).ready(function() {
         var vno = $(this).data('vno');
         $.ajax({
             type: "post",
-            url: "<?php echo roothtml.'ear/studentfee_action.php' ?>",
+            url: "<?php echo roothtml.'uniform/studentfee_action.php' ?>",
             data: {
                 action: 'gofeeview',
                 aid: aid,
@@ -143,7 +143,7 @@ $(document).ready(function() {
                 vno: vno
             },
             success: function(data) {
-                location.href = "<?=roothtml.'ear/studentfeeview.php'?>";
+                location.href = "<?=roothtml.'uniform/studentfeeview.php'?>";
 
             }
         });
@@ -157,7 +157,7 @@ $(document).ready(function() {
         var stuname = $(this).data('stuname');
         $.ajax({
             type: "post",
-            url: "<?php echo roothtml.'ear/studentfee_action.php' ?>",
+            url: "<?php echo roothtml.'uniform/studentfee_action.php' ?>",
             data: {
                 action: 'go_pay',
                 vno: vno,
@@ -166,7 +166,7 @@ $(document).ready(function() {
                 stuname: stuname
             },
             success: function(data) {
-                location.href = "<?=roothtml.'ear/studentfeepay.php'?>";
+                location.href = "<?=roothtml.'uniform/studentfeepay.php'?>";
             }
         });
     });
@@ -200,7 +200,7 @@ $(document).ready(function() {
         // reload paytype name
         $.ajax({
             type: "post",
-            url: "<?php echo roothtml.'ear/studentfee_action.php' ?>",
+            url: "<?php echo roothtml.'uniform/studentfee_action.php' ?>",
             data: {
                 action: 'show_paytype',
                 paytypeid: paytypeid,

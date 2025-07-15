@@ -32,6 +32,16 @@ include(root.'master/header.php');
                                             class="btn btn-sm btn-<?=$color?>"><i class="fas fa-plus"></i>&nbsp;
                                             <?=$lang['earstu_add']?>
                                         </a></td>
+                                    <td><a href="<?=roothtml.'ear/studentexam.php'?>" type="button"
+                                            class="btn btn-sm btn-<?=$color?>"><i class="fas fa-book"></i>&nbsp;
+                                            <?=$lang['earstu_exam']?>
+                                        </a></td>
+                                    <td>
+                                        <a href="<?=roothtml.'ear/studentactivity.php'?>" type="button"
+                                            class="btn btn-sm btn-<?=$color?>"><i class="fas fa-user"></i>&nbsp;
+                                            <?=$lang['earstu_activity']?>
+                                        </a>
+                                    </td>
                                     <td>
                                         <form method="POST" action="earstudent_action.php">
                                             <input type="hidden" name="hid">
@@ -49,24 +59,6 @@ include(root.'master/header.php');
                                                 class="btn btn-sm btn-<?=$color?>"><i
                                                     class="fas fa-file-excel"></i>&nbsp;PDF</button>
                                         </form>
-                                    </td>
-                                </tr>
-                            </table>
-                            <table>
-                                <tr>
-                                    <td><a href="<?=roothtml.'ear/studentfee.php'?>" type="button"
-                                            class="btn btn-sm btn-<?=$color?>"><i class="fas fa-dollar"></i>&nbsp;
-                                            <?=$lang['earstu_fee']?>
-                                        </a></td>
-                                    <td><a href="<?=roothtml.'ear/studentexam.php'?>" type="button"
-                                            class="btn btn-sm btn-<?=$color?>"><i class="fas fa-book"></i>&nbsp;
-                                            <?=$lang['earstu_exam']?>
-                                        </a></td>
-                                    <td>
-                                        <a href="<?=roothtml.'ear/studentactivity.php'?>" type="button"
-                                            class="btn btn-sm btn-<?=$color?>"><i class="fas fa-user"></i>&nbsp;
-                                            <?=$lang['earstu_activity']?>
-                                        </a>
                                     </td>
                                 </tr>
                             </table>
@@ -90,10 +82,6 @@ include(root.'master/header.php');
                                             <?=$lang['earstu_report']?>
                                         </a>
                                     </td>
-                                </tr>
-                            </table>
-                            <table>
-                                <tr>
                                     <td>
                                         <a href="<?=roothtml.'ear/examreport.php'?>" type="button"
                                             class="btn btn-sm btn-<?=$color?>"><i class="fas fa-table"></i>&nbsp;

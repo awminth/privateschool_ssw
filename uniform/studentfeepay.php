@@ -68,7 +68,7 @@ if($vno != ""){
                         <div class="card-header">
                             <table>
                                 <tr>
-                                    <td><a href="<?=roothtml.'ear/studentfee.php'?>" type="button"
+                                    <td><a href="<?=roothtml.'uniform/studentfee.php'?>" type="button"
                                             class="btn btn-sm btn-<?=$color?>"><i class="fas fa-arrow-left"></i>&nbsp;
                                             <?=$lang['btnback']?>
                                         </a></td>
@@ -401,7 +401,7 @@ $(document).ready(function() {
         }
         $.ajax({
             type: "post",
-            url: "<?php echo roothtml.'ear/studentfee_action.php' ?>",
+            url: "<?php echo roothtml.'uniform/studentfee_action.php' ?>",
             data: {
                 action: 'savefee',
                 studentid: studentid,
@@ -445,7 +445,7 @@ $(document).ready(function() {
     $(document).on("click", "#btnpayclose", function(e) {
         e.preventDefault();
         $("#salarymodal").modal("hide");
-        location.href = "<?=roothtml.'ear/studentfee.php'?>";
+        location.href = "<?=roothtml.'uniform/studentfee.php'?>";
     });
 
     $(document).on("change", "#paytype", function(e) {
@@ -453,7 +453,7 @@ $(document).ready(function() {
         var aid = $("[name='paytype']").val();
         $.ajax({
             type: "post",
-            url: "<?php echo roothtml.'ear/studentfee_action.php' ?>",
+            url: "<?php echo roothtml.'uniform/studentfee_action.php' ?>",
             data: {
                 action: 'paytypeamt',
                 aid: aid

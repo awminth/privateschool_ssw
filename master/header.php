@@ -235,8 +235,8 @@ if(isset($_SESSION['userid'])){
         <aside class="main-sidebar sidebar-dark-success elevation-4">
             <!-- Brand Logo -->
             <a href="<?php echo roothtml.'home/home.php' ?>" class="brand-link bg-<?=$color?>">
-                <img src="<?=$_SESSION["shoplogo"]?>" alt="AdminLTE Logo"
-                    class="brand-image img-circle elevation-3" style="opacity: .8">
+                <img src="<?=$_SESSION["shoplogo"]?>" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+                    style="opacity: .8">
                 <span class="brand-text font-weight-light" style="font-size:17px"><?=$_SESSION["shopname"]?></span>
             </a>
 
@@ -265,21 +265,21 @@ if(isset($_SESSION['userid'])){
                                 curlink == 'new_studentattendance.php' || curlink == 'studentdetail.php' || 
                                 curlink == 'studentmonthly.php' || curlink == 'new_studentmonthly.php' || 
                                 curlink == 'show_studentexam.php' || curlink == 'add_studentexam.php' || 
-                                curlink == 'edit_studentexam.php' || curlink == 'examreport.php' || 
-                                curlink == 'studentfee.php' || curlink == 'studentfeepay.php' || curlink == 'studentfeeview.php' || 
+                                curlink == 'edit_studentexam.php' || curlink == 'examreport.php' ||
                                 curlink == 'studentatt_view.php' || curlink == 'studentatt_khalist.php')?'bgactive' : '' ?>">
                                 <i class="nav-icon fas fa-table"></i>
                                 <p><?=$lang['home_ear']?>
                                 </p>
                             </a>
                         </li>
-                        <li <?=($A2==1)?'' : 'style="display:none"' ?> class="nav-item <?php echo (curlink == 'uniformcategory.php' || curlink == 'uniformitem.php' || 
-                            curlink == 'uniformsell.php' || curlink == 'uniformvoucher.php')?'menu-open' : '' ?>">
-
+                        <li <?=($A2==1)?'' : 'style="display:none"' ?> class="nav-item <?php echo (curlink == 'uniformcategory.php' || 
+                            curlink == 'uniformitem.php' || curlink == 'uniformsell.php' || 
+                            curlink == 'studentear.php' || curlink == 'studentgrade.php' || curlink == 'studentfee.php' || 
+                            curlink == 'studentfeepay.php' || curlink == 'studentfeeview.php')?'menu-open' : '' ?>">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-users"></i>
                                 <p>
-                                    <?=$lang['sale']?>
+                                    Income
                                     <i class="fas fa-angle-left right"></i>
                                 </p>
 
@@ -289,14 +289,7 @@ if(isset($_SESSION['userid'])){
                                     <a href="<?php echo roothtml.'uniform/uniformsell.php' ?>"
                                         class="nav-link <?php echo (curlink == 'uniformsell.php')?'bgactive' : '' ?>">
                                         <i class="far fa-circle nav-icon" style="font-size:10px;"></i>
-                                        <p><?=$lang['sale uniform']?></p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="<?php echo roothtml.'uniform/uniformvoucher.php' ?>"
-                                        class="nav-link <?php echo (curlink == 'uniformvoucher.php')?'bgactive' : '' ?>">
-                                        <i class="far fa-circle nav-icon" style="font-size:10px;"></i>
-                                        <p><?=$lang['voucher uniform']?></p>
+                                        <p>Sale</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -313,7 +306,15 @@ if(isset($_SESSION['userid'])){
                                         <p><?=$lang['manage category']?></p>
                                     </a>
                                 </li>
-
+                                <li class="nav-item">
+                                    <a href="<?php echo roothtml.'uniform/studentear.php' ?>"
+                                        class="nav-link <?php echo (curlink == 'studentear.php' || 
+                                        curlink == 'studentgrade.php' || curlink == 'studentfee.php' ||
+                                        curlink == 'studentfeepay.php' || curlink == 'studentfeeview.php')?'bgactive' : '' ?>">
+                                        <i class="far fa-circle nav-icon" style="font-size:10px;"></i>
+                                        <p>Student Fee</p>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                         <li class="nav-item" <?=($A3==1)?'' : 'style="display:none"' ?>>
@@ -325,7 +326,8 @@ if(isset($_SESSION['userid'])){
                         </li>
                         <li <?=($A5==1)?'' : 'style="display:none"' ?> class="nav-item <?php echo (curlink == 'allowanceincome.php' 
                         || curlink=='allowanceexpense.php' || curlink=='allowancereport.php' || curlink == 'incomeyear.php' 
-                        || curlink == 'expenseyear.php' || curlink == 'reportyear.php')?'menu-open' : '' ?>">
+                        || curlink == 'expenseyear.php' || curlink == 'reportyear.php')?'menu-open' : '' ?>"
+                            style="display:none;">
 
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-comments-dollar"></i>
@@ -337,24 +339,21 @@ if(isset($_SESSION['userid'])){
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="<?php echo roothtml.'studentallowance/incomeyear.php' ?>"
-                                        class="nav-link <?php echo (curlink == 'allowanceincome.php' || 
+                                    <a href="<?php echo roothtml.'studentallowance/incomeyear.php' ?>" class="nav-link <?php echo (curlink == 'allowanceincome.php' || 
                                         curlink == 'incomeyear.php')?'bgactive' : '' ?>">
                                         <i class="far fa-circle nav-icon" style="font-size:10px;"></i>
                                         <p>Allowance Income</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="<?php echo roothtml.'studentallowance/expenseyear.php' ?>"
-                                        class="nav-link <?php echo (curlink == 'allowanceexpense.php' || 
+                                    <a href="<?php echo roothtml.'studentallowance/expenseyear.php' ?>" class="nav-link <?php echo (curlink == 'allowanceexpense.php' || 
                                         curlink == 'expenseyear.php')?'bgactive' : '' ?>">
                                         <i class="far fa-circle nav-icon" style="font-size:10px;"></i>
                                         <p>Allowance Expense</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="<?php echo roothtml.'studentallowance/reportyear.php' ?>"
-                                        class="nav-link <?php echo (curlink == 'allowancereport.php' || 
+                                    <a href="<?php echo roothtml.'studentallowance/reportyear.php' ?>" class="nav-link <?php echo (curlink == 'allowancereport.php' || 
                                         curlink == 'reportyear.php')?'bgactive' : '' ?>">
                                         <i class="far fa-circle nav-icon" style="font-size:10px;"></i>
                                         <p>Allowance Report</p>
@@ -362,21 +361,24 @@ if(isset($_SESSION['userid'])){
                                 </li>
                             </ul>
                         </li>
-                        <li class="nav-item" <?=($A3==1)?'' : 'style="display:none"' ?>>
-                            <a href="<?php echo roothtml.'savefile/savefile.php' ?>" class="nav-link <?php echo (curlink == 'savefile.php')?'bgactive' : '' ?>">
+                        <li class="nav-item" <?=($A3==1)?'' : 'style="display:none"' ?> style="display:none;">
+                            <a href="<?php echo roothtml.'savefile/savefile.php' ?>"
+                                class="nav-link <?php echo (curlink == 'savefile.php')?'bgactive' : '' ?>">
                                 <i class="nav-icon fas fa-file-export"></i>
                                 <p>Save File</p>
                             </a>
                         </li>
-                        <li class="nav-item" <?=($A3==1)?'' : 'style="display:none"' ?>>
-                            <a href="<?php echo roothtml.'questiontype/questiontype.php' ?>" class="nav-link <?php echo (curlink == 'questiontype.php')?'bgactive' : '' ?>">
+                        <li class="nav-item" <?=($A3==1)?'' : 'style="display:none"' ?> style="display:none;">
+                            <a href="<?php echo roothtml.'questiontype/questiontype.php' ?>"
+                                class="nav-link <?php echo (curlink == 'questiontype.php')?'bgactive' : '' ?>">
                                 <i class="nav-icon fas fa-question-circle"></i>
                                 <p>Question Type</p>
                             </a>
                         </li>
-                        <li <?=($A5==1)?'' : 'style="display:none"' ?> class="nav-item <?php echo (curlink == 'saverecordgrade.php' 
+                        <li <?=($A5==1)?'' : 'style="display:none"' ?>
+                            class="nav-item <?php echo (curlink == 'saverecordgrade.php' 
                         || curlink=='savetitle.php' || curlink=='setupgrade.php' || curlink=='saverecordsubject.php' || 
-                        curlink=='setupsubject.php' || curlink=='saverecordroom.php' || curlink=='setuproom.php')?'menu-open' : '' ?>">
+                        curlink=='setupsubject.php' || curlink=='saverecordroom.php' || curlink=='setuproom.php')?'menu-open' : '' ?>" style="display:none;">
 
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-record-vinyl"></i>
@@ -401,7 +403,7 @@ if(isset($_SESSION['userid'])){
                                         <p>Save Title</p>
                                     </a>
                                 </li>
-                                <li class="nav-item" style="display:none";>
+                                <li class="nav-item" style="display:none" ;>
                                     <a href="<?php echo roothtml.'dailyteachingrecord/savetitle.php' ?>"
                                         class="nav-link <?php echo (curlink == 'savetitle.php')?'bgactive' : '' ?>">
                                         <i class="far fa-circle nav-icon" style="font-size:10px;"></i>
@@ -616,8 +618,8 @@ if(isset($_SESSION['userid'])){
                                 </li>
                             </ul>
                         </li>
-                        <li <?=($A8==1)?'' : 'style="display:none"' ?>
-                            class="nav-item <?php echo (curlink == 'announcement_all.php' || curlink=='announcement_parent.php')?'menu-open' : '' ?>">
+                        <li <?=($A8==1)?'' : 'style="display:none"' ?> class="nav-item <?php echo (curlink == 'announcement_all.php' || curlink=='announcement_parent.php')?
+                            'menu-open' : '' ?>" style="display: none;">
 
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-comments"></i>
@@ -672,7 +674,8 @@ if(isset($_SESSION['userid'])){
                             </a>
                         </li>
                         <li <?=($A12==1)?'' : 'style="display:none"' ?>
-                            class="nav-item <?php echo (curlink == 'finance.php' || curlink=='feereport.php' || curlink=='teachersalary.php')?'menu-open' : '' ?>">
+                            class="nav-item <?php echo (curlink == 'finance.php' || curlink=='feereport.php' || 
+                            curlink=='teachersalary.php' || curlink=='uniformvoucher.php')?'menu-open' : '' ?>">
 
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-bar-chart-o"></i>
@@ -697,7 +700,13 @@ if(isset($_SESSION['userid'])){
                                         <p><?=$lang['student fee report']?></p>
                                     </a>
                                 </li>
-
+                                <li class="nav-item">
+                                    <a href="<?php echo roothtml.'finance/uniformvoucher.php' ?>"
+                                        class="nav-link <?php echo (curlink == 'uniformvoucher.php')?'bgactive' : '' ?>">
+                                        <i class="far fa-circle nav-icon" style="font-size:10px;"></i>
+                                        <p>Voucher</p>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                         <li <?=($A13==1)?'' : 'style="display:none"' ?> class="nav-item">
@@ -710,8 +719,7 @@ if(isset($_SESSION['userid'])){
                             </a>
                         </li>
                         <li <?=($A14==1)?'' : 'style="display:none"' ?> class="nav-item" style="display: none;">
-                            <a href="<?php echo roothtml.'chat/chat.php' ?>"
-                                class="nav-link <?php echo (curlink == 'chat.php' || 
+                            <a href="<?php echo roothtml.'chat/chat.php' ?>" class="nav-link <?php echo (curlink == 'chat.php' || 
                                 curlink == 'chat_view.php')?'bgactive' : '' ?>">
                                 <i class="nav-icon fas fa-comments"></i>
                                 <p>

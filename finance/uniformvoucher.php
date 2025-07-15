@@ -142,7 +142,7 @@ $(document).ready(function() {
         var to = $("[name='to']").val();
         $.ajax({
             type: "post",
-            url: "<?php echo roothtml.'uniform/uniformvoucher_action.php' ?>",
+            url: "<?php echo roothtml.'finance/uniformvoucher_action.php' ?>",
             data: {
                 action: 'show',
                 page_no: page,
@@ -195,7 +195,7 @@ $(document).ready(function() {
         var vno = $(this).data('vno');
         $.ajax({
             type: "post",
-            url: "<?php echo roothtml.'uniform/uniformvoucher_action.php' ?>",
+            url: "<?php echo roothtml.'finance/uniformvoucher_action.php' ?>",
             data: {
                 action: 'view',
                 vno: vno,
@@ -228,7 +228,7 @@ $(document).ready(function() {
             function() {
                 $.ajax({
                     type: "post",
-                    url: "<?php echo roothtml.'uniform/uniformvoucher_action.php'; ?>",
+                    url: "<?php echo roothtml.'finance/uniformvoucher_action.php'; ?>",
                     data: {
                         action: 'delete',
                         vno: vno

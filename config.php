@@ -15,7 +15,7 @@ if(isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] == "on"){
 define('root',__DIR__.'/');
 
 //Local
-define('roothtml',$chk_link."://".server_name."/privateschoolssw/");
+define('roothtml',$chk_link."://".server_name."/privateschoolsunmoonlight/");
 $con=new mysqli("localhost","root","root","privateschoolssw");
 
 define('curlink',basename($_SERVER['SCRIPT_NAME']));

@@ -77,7 +77,7 @@ if($row1['SiteIcon'] != "" || $row1['SiteIcon'] != NULL){
       <div class="container-fluid d-flex align-items-center justify-content-center vh-100">
         <div class="row">
           <div class="col-md-6">
-            <img src="lib/images/background.png" alt=" " class="img-fluid">
+            <img src="lib/images/sunmoonlight.jpg" alt=" " class="img-fluid">
           </div>
           <div class="col-md-6 d-flex flex-column align-items-center justify-content-center">
               <div class="login-logo" style="margin-bottom: 50px;">

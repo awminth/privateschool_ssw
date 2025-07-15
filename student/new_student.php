@@ -18,8 +18,10 @@
     $religionname = "";
     $fname = "";
     $fwork = "";
+    $fnrc = "";
     $mname = "";
     $mwork = "";
+    $mnrc = "";
     $address = "";
     $gender = "Male";
     $schooldt = date("Y-m-d");
@@ -68,8 +70,10 @@
         $religionname = $row["rname"];
         $fname = $row["FatherName"];
         $fwork = $row["FatherWork"];
+        $fnrc = $row["Fnrc"];
         $mname = $row["MotherName"];
         $mwork = $row["MotherWork"];
+        $mnrc = $row["Mnrc"];
         $gender = $row["Gender"];
         if($row["Img"] != "" || $row["Img"] != NULL){
             $img = roothtml.'upload/student/'.$row["Img"];            
@@ -229,6 +233,11 @@
                                     <input type="text" class="form-control border-primary" name="fname"
                                         placeholder="Father Name" value="<?=$fname?>">
                                 </div>
+                                <div class="form-group col-sm-4">
+                                    <label for="usr">Father NRC No</label>
+                                    <input type="text" class="form-control border-primary" name="fnrc"
+                                        placeholder="Father NRC No" value="<?=$fnrc?>">
+                                </div>
                                 <div class="form-group col-sm-4" style="display:none">
                                     <label for="usr"><?=$lang['stu_fwork']?></label>
                                     <input type="text" class="form-control border-primary" name="fwork"
@@ -238,6 +247,11 @@
                                     <label for="usr"><?=$lang['stu_mname']?></label>
                                     <input type="text" class=" form-control border-primary" name="mname"
                                         placeholder="Mother Name" value="<?=$mname?>">
+                                </div>
+                                <div class="form-group col-sm-4">
+                                    <label for="usr">Mother NRC No</label>
+                                    <input type="text" class="form-control border-primary" name="mnrc"
+                                        placeholder="Mother NRC No" value="<?=$mnrc?>">
                                 </div>
                                 <div class="form-group col-sm-4">
                                     <label for="usr"><?=$lang['stu_mwork']?></label>
@@ -259,12 +273,12 @@
                                     <input type="text" class="form-control border-primary" name="email"
                                         placeholder="Email" value="<?=$email?>">
                                 </div>
-                                <div class="form-group col-sm-4">
+                                <div class="form-group col-sm-6">
                                     <label for="usr"><?=$lang['stu_emergence']?></label>
                                     <input type="text" class="form-control border-primary" name="emergence"
                                         placeholder="Emergency Contact" value="<?=$emergence?>">
                                 </div>
-                                <div class="form-group col-sm-4">
+                                <div class="form-group col-sm-6">
                                     <label for="usr"><?=$lang['stu_photo']?></label>
                                     <input type="file" class="form-control border-primary p-1" name="file" id="photo"
                                         accept=".jpg,.png,.jpeg,.JPG,.PNG,.JPEG">

@@ -60,7 +60,9 @@ if($action == 'show'){
             <th>'.$lang["stu_attend_grade"].'</th>  
             <th>'.$lang["stu_gender"].'</th>    
             <th>'.$lang["stu_fname"].'</th>
+            <th>Father NRC No</th>
             <th>'.$lang["stu_mname"].'</th>
+            <th>Mother NRC No</th>
             <th>'.$lang["stu_mwork"].'</th>
             <th>'.$lang["stu_phno"].'</th>
             <th>'.$lang["stu_cell_phone"].'</th>
@@ -98,7 +100,9 @@ if($action == 'show'){
                 <td>{$row["RealGrade"]}</td>
                 <td>{$row["Gender"]}</td> 
                 <td>{$row["FatherName"]}</td>
+                <td>{$row["Fnrc"]}</td>
                 <td>{$row["MotherName"]}</td>
+                <td>{$row["Mnrc"]}</td>
                 <td>{$row["MotherWork"]}</td>
                 <td>{$row["PhoneNo"]}</td>
                 <td>{$row["CellPhone"]}</td>
@@ -301,8 +305,10 @@ if($action == 'save'){
     $nationality = $_POST["nationality"];
     $religion = $_POST["religion"];
     $fname = $_POST["fname"];
+    $fnrc = $_POST["fnrc"];
     $fwork = $_POST["fwork"];
     $mname = $_POST["mname"];
+    $mnrc = $_POST["mnrc"];
     $mwork = $_POST["mwork"];
     $gender = $_POST["gender"];
     $address = $_POST["address"];
@@ -347,14 +353,15 @@ if($action == 'save'){
                 $sql = "insert into tblstudentprofile (LoginID,StudentID,Name,DOB,Age,NationalID,
                 ReligionID,FatherName,FatherWork,MotherName,MotherWork,Img,Gender,SchoolDate,ParentAddress,
                 LastSchoolName,AllowGrade,TopGrade,KG,G1,G2,G3,G4,G5,G6,G7,G8,G9,G10,G11,G12,OutReason,Rmk,
-                BirthPlace,PhoneNo,Email,Emergence,NameMM,AttachDoc,RealGrade,CellPhone)  
+                BirthPlace,PhoneNo,Email,Emergence,NameMM,AttachDoc,RealGrade,CellPhone,Fnrc,Mnrc)  
                 values ('{$userid}','{$studentid}','{$name}','{$dob}','{$age}','{$nationality}',
                 '{$religion}','{$fname}','{$fwork}','{$mname}','{$mwork}','{$new_filename}',
                 '{$gender}','{$schooldt}','{$address}','{$lastschoolname}','{$allowgrade}',
                 '{$topgrade}','{$KG}','{$G1}','{$G2}','{$G3}','{$G4}','{$G5}','{$G6}','{$G7}',
                 '{$G8}','{$G9}','{$G10}','{$G11}','{$G12}','{$outreason}','{$rmk}',
                 '{$place}','{$phno}','{$email}','{$emergence}','{$namemm}','{$attachdoc}'
-                ,'{$realgrade}','{$cellphone}')";
+                ,'{$realgrade}','{$cellphone}','{$fnrc}','{$mnrc}')";
+
                 if(mysqli_query($con,$sql)){
                     // get last insert id
                     $last_id = mysqli_insert_id($con);
@@ -372,14 +379,15 @@ if($action == 'save'){
         $sql = "insert into tblstudentprofile (LoginID,StudentID,Name,DOB,Age,NationalID,
         ReligionID,FatherName,FatherWork,MotherName,MotherWork,Gender,SchoolDate,ParentAddress,
         LastSchoolName,AllowGrade,TopGrade,KG,G1,G2,G3,G4,G5,G6,G7,G8,G9,G10,G11,G12,OutReason,Rmk,
-        BirthPlace,PhoneNo,Email,Emergence,NameMM,AttachDoc,RealGrade,CellPhone)  
+        BirthPlace,PhoneNo,Email,Emergence,NameMM,AttachDoc,RealGrade,CellPhone,Fnrc,Mnrc)  
         values ('{$userid}','{$studentid}','{$name}','{$dob}','{$age}','{$nationality}',
         '{$religion}','{$fname}','{$fwork}','{$mname}','{$mwork}',
         '{$gender}','{$schooldt}','{$address}','{$lastschoolname}','{$allowgrade}',
         '{$topgrade}','{$KG}','{$G1}','{$G2}','{$G3}','{$G4}','{$G5}','{$G6}','{$G7}',
         '{$G8}','{$G9}','{$G10}','{$G11}','{$G12}','{$outreason}','{$rmk}',
         '{$place}','{$phno}','{$email}','{$emergence}','{$namemm}','{$attachdoc}'
-        ,'{$realgrade}','{$cellphone}')";
+        ,'{$realgrade}','{$cellphone}','{$fnrc}','{$mnrc}')";
+
        
         if(mysqli_query($con,$sql)){
             // get last insert id
@@ -410,7 +418,9 @@ if($action == 'edit'){
     $religion = $_POST["religion"];
     $fname = $_POST["fname"];
     $fwork = $_POST["fwork"];
+    $fnrc = $_POST["fnrc"];
     $mname = $_POST["mname"];
+    $mnrc = $_POST["mnrc"];
     $mwork = $_POST["mwork"];
     $path = $_POST["path"];
     $gender = $_POST["gender"];
@@ -466,7 +476,7 @@ if($action == 'edit'){
                 G7='{$G7}',G8='{$G8}',G9='{$G9}',G10='{$G10}',G11='{$G11}',G12='{$G12}',OutReason='{$outreason}',
                 Rmk='{$rmk}',BirthPlace='{$place}',PhoneNo='{$phno}',Email='{$email}',Emergence='{$emergence}' 
                 ,NameMM='{$namemm}',AttachDoc='{$attachdoc}',RealGrade='{$realgrade}',CellPhone='{$cellphone}' 
-                where AID={$aid}";
+                ,Fnrc='{$fnrc}',Mnrc='{$mnrc}' where AID={$aid}";
                 if(mysqli_query($con,$sql)){
                     save_log($_SESSION["username"]." သည် student အား update လုပ်သွားသည်။");
                     echo 1;
@@ -485,7 +495,7 @@ if($action == 'edit'){
         G7='{$G7}',G8='{$G8}',G9='{$G9}',G10='{$G10}',G11='{$G11}',G12='{$G12}',OutReason='{$outreason}',
         Rmk='{$rmk}',BirthPlace='{$place}',PhoneNo='{$phno}',Email='{$email}',Emergence='{$emergence}'  
         ,NameMM='{$namemm}',AttachDoc='{$attachdoc}',RealGrade='{$realgrade}',CellPhone='{$cellphone}' 
-        where AID={$aid}";
+        ,Fnrc='{$fnrc}',Mnrc='{$mnrc}' where AID={$aid}";
         if(mysqli_query($con,$sql)){
             save_log($_SESSION["username"]." သည် student အား update လုပ်သွားသည်။");
             echo 1;
@@ -531,9 +541,9 @@ if($action == 'excel'){
         $out .= '<head><meta charset="utf-8"></head>
         <table >  
             <tr>
-                <td colspan="36" align="center"><h3>'.$lang["home_student"].'</h3></td>
+                <td colspan="38" align="center"><h3>'.$lang["home_student"].'</h3></td>
             </tr>
-            <tr><td colspan="36"><td></tr>
+            <tr><td colspan="38"><td></tr>
             <tr>    
                 <th style="border: 1px solid ;">'.$lang["no"].'</th> 
                 <th style="border: 1px solid ;">'.$lang["stu_id"].'</th>
@@ -547,7 +557,9 @@ if($action == 'excel'){
                 <th style="border: 1px solid ;">'.$lang["stu_attend_grade"].'</th>
                 <th style="border: 1px solid ;">'.$lang["stu_gender"].'</th>               
                 <th style="border: 1px solid ;">'.$lang["stu_fname"].'</th>
+                <th style="border: 1px solid ;">Father NRC No</th>
                 <th style="border: 1px solid ;">'.$lang["stu_mname"].'</th>
+                <th style="border: 1px solid ;">Mother NRC No</th>
                 <th style="border: 1px solid ;">'.$lang["stu_mwork"].'</th>
                 <th style="border: 1px solid ;">'.$lang["stu_phno"].'</th>
                 <th style="border: 1px solid ;">'.$lang["stu_cell_phone"].'</th>
@@ -582,7 +594,9 @@ if($action == 'excel'){
                     <td style="border: 1px solid ;">'.$row["RealGrade"].'</td>
                     <td style="border: 1px solid ;">'.$row["Gender"].'</td>                    
                     <td style="border: 1px solid ;">'.$row["FatherName"].'</td>
+                    <td style="border: 1px solid ;">'.$row["Fnrc"].'</td>
                     <td style="border: 1px solid ;">'.$row["MotherName"].'</td>
+                    <td style="border: 1px solid ;">'.$row["Mnrc"].'</td>
                     <td style="border: 1px solid ;">'.$row["MotherWork"].'</td>
                     <td style="border: 1px solid ;">'.$row["PhoneNo"].'</td>
                     <td style="border: 1px solid ;">'.$row["CellPhone"].'</td>
@@ -653,9 +667,9 @@ if($action == 'pdf'){
         $out .= '<head><meta charset="utf-8"></head>
         <table >  
             <tr>
-                <td colspan="36" align="center"><h3>'.$lang["home_student"].'</h3></td>
+                <td colspan="38" align="center"><h3>'.$lang["home_student"].'</h3></td>
             </tr>
-            <tr><td colspan="36"><td></tr>
+            <tr><td colspan="38"><td></tr>
             <tr>    
                 <th style="border: 1px solid ;">'.$lang["no"].'</th> 
                 <th style="border: 1px solid ;">'.$lang["stu_id"].'</th>
@@ -669,7 +683,9 @@ if($action == 'pdf'){
                 <th style="border: 1px solid ;">'.$lang["stu_attend_grade"].'</th>
                 <th style="border: 1px solid ;">'.$lang["stu_gender"].'</th>               
                 <th style="border: 1px solid ;">'.$lang["stu_fname"].'</th>
+                <th style="border: 1px solid ;">Father NRC No</th>
                 <th style="border: 1px solid ;">'.$lang["stu_mname"].'</th>
+                <th style="border: 1px solid ;">Mother NRC No</th>
                 <th style="border: 1px solid ;">'.$lang["stu_mwork"].'</th>
                 <th style="border: 1px solid ;">'.$lang["stu_phno"].'</th>
                 <th style="border: 1px solid ;">'.$lang["stu_cell_phone"].'</th>
@@ -704,7 +720,9 @@ if($action == 'pdf'){
                     <td style="border: 1px solid ;">'.$row["RealGrade"].'</td>
                     <td style="border: 1px solid ;">'.$row["Gender"].'</td>                    
                     <td style="border: 1px solid ;">'.$row["FatherName"].'</td>
+                    <td style="border: 1px solid ;">'.$row["Fnrc"].'</td>
                     <td style="border: 1px solid ;">'.$row["MotherName"].'</td>
+                    <td style="border: 1px solid ;">'.$row["Mnrc"].'</td>
                     <td style="border: 1px solid ;">'.$row["MotherWork"].'</td>
                     <td style="border: 1px solid ;">'.$row["PhoneNo"].'</td>
                     <td style="border: 1px solid ;">'.$row["CellPhone"].'</td>
